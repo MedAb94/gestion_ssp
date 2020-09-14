@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+
+        <div align="center">
+            <h1>Liste d'interimaires</h1>
+            <table class="table " id="listInterm">
+                <thead class="thead-light">
+                <tr>
+                    <th>
+                        Nom
+                    </th>
+
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Portable
+                    </th>
+                    <th>
+                        Datte de naissance
+                    </th>
+                    <th>
+                        Lieu de naissance
+                    </th>
+                    <th>
+                        Adresse
+                    </th>
+                    <th>
+                        Mobilité
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for inter in interms %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'interimaire' inter.id %}">
+                                {{ inter.prenom }} {{ inter.nom }}
+                            </a>
+                        </td>
+
+                        <td>{{ inter.mail }}
+                        </td>
+                        <td>{{ inter.portable }}
+                        </td>
+                        <td>{{ inter.date_naissance }}
+                        </td>
+                        <td>{{ inter.lieu_naissance }}
+                        </td>
+                        <td>{{ inter.adresse }}
+                        </td>
+                        <td>{{ inter.mobilite_geographique }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+{% block customjs %}
+    <script>
+        $(document).ready(function () {
+            $('#listInterm').DataTable({
+                "language": {
+                    "url": "{% static 'fr.json' %}"
+                },
+                "pageLength": 10
+
+            });
+        });
+    </script>
+{% endblock %}
+
+

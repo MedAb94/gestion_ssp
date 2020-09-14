@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">formulaire de mise a disposition</h1>
+        <form action="{% url 'generateContrat' %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="employer">Employeur</label>
+                        <select class="form-control" id="employer" name="entreprise" required>
+                            {% for e in employeurs %}
+                                <option value="{{e.id}}">{{ e.nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="candidat">Candidat</label>
+                        <select class="form-control" id="candidat" name="candidat" required>
+                            {% for c in candidats %}
+                                <option value="{{c.id}}">{{ c.nom }} - {{ c.telephone }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Motif et justification du recourd</label>
+                        <textarea name="motif" id="exampleFormControlSelect1" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-12 text-center"><h3>Dates et horaires</h3></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="debut">Debut de la mission</label>
+                        <input type="date" class="form-control" id="debut" name="date_de_debut">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="fin">Fin de la mission</label>
+                        <input type="date" class="form-control" id="fin" name="date_de_fin">
+                    </div>
+                </div>
+                <div class="col-12"><h3>Souplesse</h3></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="debutSouplesse">Debut</label>
+                        <input type="date" class="form-control" name="debut_souplesse" id="debutSouplesse">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="finSouplesse">Fin</label>
+                        <input type="date" name="fin_souplesse" class="form-control" id="finSouplesse">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="horaireCollectif">Horaire collectif</label>
+                        <input type="text" placeholder="Exple: 8 heures /J" id="horaireCollectif" name="horaire_collectif" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="horaire">Horaire</label>
+                        <input type="text" value="8H:30 - 17h:00" class="form-control" id="horaire" name="horaire">
+                    </div>
+                </div>
+                <div class="col-12 text-center"><h3>Salaire</h3></div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="heureNormal">Heure normale</label>
+                        <input type="text" class="form-control" name="salaire_heur_normal" id="heureNormal">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="heureSuplementaire">Heure supplementaire</label>
+                        <input type="text" class="form-control" name="salaire_heur_compl" id="heureSuplementaire">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="montantJour">Montant par jour</label>
+                        <input type="text" class="form-control" name="montant_par_jour" id="montantJour">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="primeDeplacement">Prime deplacement</label>
+                        <input type="text" class="form-control" name="prime_deplacement" id="primeDeplacement">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="autrePrimes">Autres prime</label>
+                        <input type="text" class="form-control" name="autres_primes" id="autrePrimes">
+                    </div>
+                </div>
+                <div class="col-12 text-center"><h3>Caracteristiques et risques professionnels du poste</h3></div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="caracteristique">Carecteristique</label>
+                        <textarea name="carecteristique" class="form-control" id="caracteristique" ></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="risques">Risques</label>
+                        <textarea name="risques" class="form-control" id="risques"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="equipements">Equipements</label>
+                        <textarea name="equipements" id="equipements" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block my-5">Enregister le contrat</button>
+        </form>
+    </div>
+
+{% endblock %}
+
+

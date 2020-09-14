@@ -1,0 +1,54 @@
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg  mb-5">
+{% if request.user.is_authenticated %}
+    <div class="container">
+        <a class="navbar-brand font-weight-bolder" href="/">SSP-RIM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item {% if '/gestion/' == request.path %} active font-weight-bolder {% endif %}">
+                    <a class="nav-link" href="{% url 'interventions' %}">Interventions</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {% if '/interimaires' in request.path %} active font-weight-bolder {% endif %}"
+                       href="{% url 'interimaires' %}">Interimaires</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {% if '/candidats' in request.path %} active font-weight-bolder {% endif %}"
+                       href="{% url 'candidats' %}">Cadidats</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {% if '/disposition' in request.path %} active font-weight-bolder {% endif %}"
+                       href="{% url 'disposition' %}">Mise a disposition</a>
+                </li>
+
+            </ul>
+            {% if user.is_authenticated %}
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item mr-3 ">
+                        <a class="nav-link">
+                            Welcome {{ user.username }}</a>
+                    </li>
+                  <li
+                            {% if 'logout' in request.path %}
+                                class="nav-item mr-3 active"
+                            {% else %}
+                                class="nav-item mr-3"
+                            {% endif %}
+                    >
+                        <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
+                            <i class="fas fa-sign-in-alt"></i>Logout</a>
+                        <form action="{% url 'logout' %}" method="POST" id="logout">
+                            {% csrf_token %}
+                        </form>
+                    </li>
+                </ul>
+            {% endif %}
+
+        </div>
+    </div>
+{% endif %}
+</nav>

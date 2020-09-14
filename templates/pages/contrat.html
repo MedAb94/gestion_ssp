@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="text-center">
+            <h4 class="text-uppercase">Contrat de mission N°CMT{{ contrat.id }}SSP</h4>
+        </div>
+        <div class="text-right d-print-none"><button class="btn btn-secondary">Imprimer</button></div>
+        <div class="row mt-4">
+            <div class="  col-sm-12 col-md-6 text-center">
+                <h1 class="display-1">SSP RIM</h1>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                Société à responsabilité limité <br>
+                Capital : 2 Millions MRU <br>
+                Adresse : Route Soukouk, Nouakchott, Mauritanie <br>
+                Tel : (+222) 45 46 46 46 <br>
+                Email : contact@ssprim.com <br>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="container border">
+
+            <div class="row ">
+                <div class="col-12 text-center bg-light">
+                    <h1>Contrat de mission temporaire</h1>
+                </div>
+                <div class="col-sm-12 col-md-6 border ">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <h5 class="text-center">Employeur</h5>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-5 font-weight-bold">
+                            Nom : <br>
+                            Adresse : <br>
+                            Representer par : <br>
+                            Telephone: <br>
+                            Email: <br>
+                        </div>
+                        <div class="col-7">
+							<span class="font-weight-bold"> {{ contrat.entreprise }} </span> <br>
+                            {{contrat.entreprise.adresse}} <br>
+                            {{contrat.entreprise.representant}} <br>
+                            {{contrat.entreprise.telephone}} <br>
+                            {{contrat.entreprise.email}} <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 border ">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <h5 class="text-center">Interimaire</h5>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-5 font-weight-bold">
+                            Nom : <br>
+                            Adresse : <br>
+                            Telephone: <br>
+                            Email: <br>
+                        </div>
+                        <div class="col-7">
+							<span class="font-weight-bold">
+								{{ contrat.candidat.nom }} </span> <br>
+                            {{ contrat.candidat.adresse }} <br>
+                            {{ contrat.candidat.telephone }} <br>
+                            {{ contrat.candidat.mail }} <br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--section 2 motif  et justification-->
+    <section>
+        <div class="container border">
+            <div class="row">
+                <div class="col-12 bg-light text-center">
+                    <h2> Motif et justifications du recours </h2>
+                </div>
+                <div class="col-12 ">
+                    <p>{{ contrat.motif }}</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!--section 3 duree de la mission et la salaire de reference-->
+    <section>
+        <div class="container">
+            <div class="row border">
+                <div class="col-md-12 col-lg-6 border ">
+                    <div class="row text-center bg-light">
+                        <h2>Duree de la mission</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            Durée De La Mission : <Br>
+                            Souplesse : <Br>
+                            Horaire Collectif : <Br>
+                            Horaires <Br>
+                        </div>
+                        <div class="col-6">
+                            {{ contrat.date_de_debut }} au {{ contrat.date_de_fin }} <Br>
+                            {{ contrat.debut_souplesse }} au {{ contrat.fin_souplesse }} <Br>
+                            {{ contrat.horaire_collectif }} <Br>
+                            {{ contrat.horaire }} <Br>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-6 border">
+                    <div class="row text-center bg-light">
+                        <h2>Salaire</h2>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-8">
+                            <div class="text-uppercase">
+                                heures normales <br>
+                                heures complémentaires <br>
+                                prime deplacement <br>
+                            </div>
+
+                        </div>
+                        <div class="col-4 text-right">
+                            {{ contrat.salaire_heur_normal }} <br>
+                            {{ contrat.salaire_heur_compl }} <br>
+                            {{ contrat.prime_deplacement }} <br>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section 3 caracteristiques et risque-->
+    <section>
+        <div class="container">
+            <div class="row border">
+                <div class="col-12 bg-light">
+                    <h2 class="text-center"> caracteristiques et risques professionnels du poste</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col  border ">
+                    <div class="row ">
+                        <div class="col">
+                            <p>caracteristiques</p>
+                        </div>
+
+                        <div class="col text-uppercase">
+                            <p>{{ contrat.carecteristique }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <p>Risque</p>
+                        </div>
+
+                        <div class="col text-uppercase">
+                            <p>{{ contrat.risques }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <p>Equipements</p>
+                        </div>
+
+                        <div class="col text-uppercase">
+                            <p>{{ contrat.equipements }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- fin row sous le titre h2 -->
+        </div>
+    </section>
+
+    <div class="container">
+
+        <div class="row text-center mb-5">
+            <div class="col-12 my-3">
+                <h6>Fait à rennes, le {{ contrat.creation }}</h6>
+            </div>
+
+            <div class="col-6">
+                <h6>signature de l'E.T.T</h6>
+            </div>
+            <div class="col-6">
+                <h6>L'interimaire soussigné(e)</h6>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

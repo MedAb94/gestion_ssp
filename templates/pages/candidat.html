@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+
+        <div align="center">
+            <h1>Liste des candidats</h1>
+            <table class="table " id="listCandidat">
+                <thead class="thead-light">
+                <tr>
+
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Portable
+                    </th>
+                    <th>
+                        Naissance
+                    </th>
+
+                    <th>
+                        Adresse
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Situation
+                    </th>
+                    <th>
+                        Experience
+                    </th>
+                    <th>
+                        CV
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for candidat in candidats %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'candidat' candidat.id %}">
+                                {{ candidat.prenom }} {{ candidat.nom }}
+                            </a>
+                        </td>
+                        <td>{{ candidat.mail }}
+                        </td>
+                        <td>
+                            {{ candidat.portable }}
+                        </td>
+                        <td>{{ candidat.date_naissance }} à {{ candidat.lieu_naissance }}
+                        </td>
+                        <td>{{ candidat.adresse }}
+                        </td>
+                        <td>{{ candidat.type }}
+                        </td>
+                        <td>{{ candidat.situation_actuelle }}
+                        </td>
+                        <td>{{ candidat.specialite }}
+                        </td>
+                        <td>{{ candidat.experience }}
+                        </td>
+                        <td><a href="{{ candidat.cv }}">Voir CV</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+{% block customjs %}
+    <script>
+        $(document).ready(function () {
+            $('#listCandidat').DataTable({
+                "language": {
+                    "url": "{% static 'fr.json' %}"
+                },
+                "pageLength": 10
+
+            });
+        });
+    </script>
+{% endblock %}
+
+

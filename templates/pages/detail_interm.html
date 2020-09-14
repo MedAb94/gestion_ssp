@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class=" mb-3">
+            <h1>Informations d'interimaires</h1>
+
+            <table class="table table-bordered">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Prenom</td>
+                    <td>{{ interm.prenom }}</td>
+                </tr>
+                <tr>
+                    <td>Nom</td>
+                    <td>{{ interm.nom }}</td>
+                </tr>
+                <tr>
+                    <td>Portable</td>
+                    <td>{{ interm.portable }}</td>
+                </tr>
+                <tr>
+                    <td>Mobilité</td>
+                    <td>{{ interm.mobilite_geographique }}</td>
+                </tr>
+                <tr>
+                    <td>Date d'adhésion</td>
+                    <td>{{ interm.date_creation }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h1>Historique d'interventions</h1>
+
+            <table class="table " id="listInterv">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Inervention</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Frais deplcmt</th>
+                    <th scope="col">Cout</th>
+                    <th scope="col">% SSP</th>
+                    <th scope="col">Net a payer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for inter in intervs %}
+                    <tr>
+                        <td>
+                            {{ inter.date }}
+                        </td>
+                        <td>{{ inter.nom_intervention }}
+                        </td>
+                        <td>{{ inter.nom_client }}
+                        </td>
+                        <td>{{ inter.adresse_client }}
+                        </td>
+                        <td>{{ inter.cout_depalacement }}
+                        </td>
+                        <td>{{ inter.cout }}
+                        </td>
+                        <td>{{ inter.pourcentage_ssp }}
+                        </td>
+                        <td>{{ inter.net_a_payer }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+{% block customjs %}
+    <script>
+        $(document).ready(function () {
+            $('#listInterv').DataTable({
+                "language": {
+                    "url": "{% static 'fr.json' %}"
+                },
+                "pageLength": 10
+
+            });
+        });
+    </script>
+{% endblock %}
+
+

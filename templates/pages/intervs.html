@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+
+        <div align="center">
+            <h1>Interventions</h1>
+
+        </div>
+
+        <table class="table " id="listInterv">
+            <thead class="thead-light">
+            <tr>
+                <th>
+                    Nom intervent
+                </th>
+                <th>
+                    Tel client
+                </th>
+                <th>
+                    Nom client
+                </th>
+                <th>
+                    Interimaire
+                </th>
+                <th>
+                    Adresse client
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Distance
+                </th>
+                <th>
+                    Cout
+                </th>
+                <th>
+                    Deplacement
+                </th>
+                <th>
+                    % SSP
+                </th>
+                <th>
+                    Net a payer
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for inter in inter %}
+                <tr>
+                    <td>
+                        {{ inter.nom_intervention }}
+                    </td>
+                    <td>{{ inter.tel_client }}
+                    </td>
+                    <td>{{ inter.nom_client }}
+                    </td>
+                    <td>{{ inter.interimaire }}
+                    </td>
+                    <td>{{ inter.adresse_client }}
+                    </td>
+                    <td>{{ inter.date }}
+                    </td>
+                    <td>{{ inter.distance }} KM
+                    </td>
+                    <td>{{ inter.cout }}
+                    </td>
+                    <td>{{ inter.cout_depalacement }}
+                    </td>
+                    <td>{{ inter.pourcentage_ssp }}
+                    </td>
+                    <td>{{ inter.net_a_payer }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+
+{% block customjs %}
+    <script>
+        $(document).ready(function () {
+            $('#listInterv').DataTable({
+                "language": {
+                    "url": "{% static 'fr.json' %}"
+                },
+                  "pageLength": 10
+
+            });
+        });
+    </script>
+{% endblock %}
